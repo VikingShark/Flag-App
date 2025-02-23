@@ -1,0 +1,9 @@
+.countries {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    /* max-width: 1200px; */
+    border: 1px solid white;
+}
