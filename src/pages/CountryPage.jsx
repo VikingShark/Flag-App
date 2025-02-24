@@ -1,5 +1,6 @@
 import { useLoaderData, Link } from "react-router-dom";
 import "./CountryPage.css";
+import backArrow from '../assets/arrow-left.svg'
 
 const CountryPage = () => {
   const response = useLoaderData();
@@ -20,30 +21,37 @@ const CountryPage = () => {
   console.log();
 
   return (
-    <div>
-      <Link to="/">Back</Link>
+    <div className="country-page-container">
+     <button>
+        <img className="back-arw" src={backArrow} alt="" />
+        <Link className="all-links" to="/">BACK</Link>
+      </button>
       <div className="country-page">
-        <img src={country.flags.svg} alt="" />
+        <img className="country-flag" src={country.flags.svg} alt="" />
         <div className="country-info-container">
           <h1>{country.name.common}</h1>
-          <div className="country-text">
-            <p>Population: {country.population}</p>
-            <p>Region: {country.region}</p>
-            <p>Capital: {country.capital}</p>
-            <p>Native Name: {firstNativeNameCommon}</p>
-            <p>Top Level Domain: {country.tld}</p>
-            <p>Currencies: {firstNativeCurrencyCommon}</p>
-            <p>Language: {firstNativeLanguage}</p>
+          <div className="country-info">
+            <div className="country-child">
+              <p><strong>Population:</strong> {country.population}</p>
+              <p><strong>Region:</strong> {country.region}</p>
+              <p><strong>Region:</strong> {country.capital}</p>
+              <p><strong>Native Name:</strong> {firstNativeNameCommon}</p>
+            </div>
+            <div className="country-child">
+              <p><strong>Top Level Domain:</strong> {country.tld}</p>
+              <p><strong>Currencies:</strong> {firstNativeCurrencyCommon}</p>
+              <p><strong>Language:</strong> {firstNativeLanguage}</p>
+            </div>
           </div>
           <div className="border-countries">
-            <p>Border Countries:</p>
-            {country.borders.map((borderCountry, i) => {
-              return (
-                <Link key={i} to={`/country/${borderCountry}`}>
-                  <p>{borderCountry}</p>
-                </Link>
-              );
-            })}
+            <p><strong>Border Countries:</strong></p>
+            {country.borders && country.borders.length > 0
+              ? country.borders.map((borderCountry, i) => (
+                  <Link className="all-links border-links" key={i} to={`/country/${borderCountry}`}>
+                    <p>{borderCountry}</p>
+                  </Link>
+                ))
+              : "This country has no Border Countries"}
           </div>
         </div>
       </div>

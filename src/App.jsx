@@ -8,11 +8,11 @@ import {
 } from 'react-router-dom'
 
 /* Components */
-// import SearchBar from './components/SearchBar'
+import SearchBar from './components/SearchBar'
 // import DropDown from './components/DropDown'
 
 /* Pages */
-import HomePage, {AllCountriesLoader} from './pages/Home'
+import HomePage, { getCountriesByQueryStringLoader} from './pages/Home'
 import CountryPage, {CountryPageLoader} from './pages/CountryPage'
 
 /* Layouts */
@@ -21,7 +21,7 @@ import RootLayout from './layouts/RootLayout'
 
 const routesFromElements = createRoutesFromElements(
   <Route path="/" element={<RootLayout />}>
-    <Route index element={<HomePage />} loader={AllCountriesLoader} />
+    <Route index element={<HomePage />} loader={getCountriesByQueryStringLoader} />
     <Route path="country/:CountryCode" element={<CountryPage />} loader={CountryPageLoader} />
   </Route>
 )
