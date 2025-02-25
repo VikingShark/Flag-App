@@ -7,9 +7,6 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-/* Components */
-import SearchBar from './components/SearchBar'
-// import DropDown from './components/DropDown'
 
 /* Pages */
 import HomePage, { getCountriesByQueryStringLoader} from './pages/Home'

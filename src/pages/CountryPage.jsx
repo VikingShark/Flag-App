@@ -22,10 +22,12 @@ const CountryPage = () => {
 
   return (
     <div className="country-page-container">
-     <button>
-        <img className="back-arw" src={backArrow} alt="" />
-        <Link className="all-links" to="/">BACK</Link>
-      </button>
+      <Link className="all-links" to="/">
+        <button>
+          <img className="back-arw" src={backArrow} alt="" />
+          <span>BACK</span>
+        </button>
+      </Link>
       <div className="country-page">
         <img className="country-flag" src={country.flags.svg} alt="" />
         <div className="country-info-container">

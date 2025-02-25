@@ -1,16 +1,24 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import "./Home.css";
+
 import SearchBar from "../components/SearchBar";
-import { useEffect, useState } from "react";
+import DropDown from '../components/DropDown'
 
 const HomePage = () => {
   const countries = useLoaderData();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/", { replace: true });
+}, []);
+
 
   return (
     <div className="home-container">
-      <div className="filter-contries">
+      <div className="filter-countries">
         <SearchBar />
-        {/* <DropDown /> */}
+        <DropDown />
       </div>
 
       <div className="countries">
@@ -39,18 +47,17 @@ const HomePage = () => {
 
 
 export const getCountriesByQueryStringLoader = async ({request}) => {
-    // TODO: Hur hämtar jag queryString från url?
-    
     const url = new URL(request.url);
     const searchParams = new URLSearchParams(url.search);
 
-    // Hämta en specifik query-parameter (t.ex. "search")
     const searchQuery = searchParams.get("search");
+    const regionQuery = searchParams.get("region");
 
-    // Gör något med query-parametern (t.ex. ett API-anrop)
     let apiUrl = "https://restcountries.com/v3.1/all";
     if (searchQuery) {
         apiUrl = `https://restcountries.com/v3.1/name/${searchQuery}`;
+    } else if (regionQuery) {
+        apiUrl = `https://restcountries.com/v3.1/region/${regionQuery}`;
     }
 
     const res = await fetch(apiUrl);
